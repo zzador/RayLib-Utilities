@@ -79,9 +79,7 @@ void LayoutRGBox(RGBox* pBox)
 		childSize = ((float) pChild->weight * ds) * size;
 		minSize = pBox->type == RGBOX_HORIZONTAL ? minW : minH;
 		
-		if (childSize < minSize)
-			dynSpace -= minSize;
-		
+		dynSpace -= childSize < minSize ? minSize : 0;
 		startPos -= weightSum == 0 ? (childSize < minSize ? minSize : childSize) : 0.0f;
 		
 		pChild = pChild->pPrev;

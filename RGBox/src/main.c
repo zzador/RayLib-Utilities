@@ -21,8 +21,8 @@ int main(int argc, char* pArgv[])
 	int height = 512;
 	
 	RGBox fillerA, fillerB, fillerD, fillerE,
-		winBox, menu, menuButtonA, menuButtonB, content,
-		content2, resolutionA, resolutionB, resolutionC, exit;
+		winBox, menu, menuButtonA, menuButtonB, outerContent,
+		innerContent, resolutionA, resolutionB, resolutionC, exit;
 	
 	InitWindow(width, height, "Raylib");
 	
@@ -48,26 +48,26 @@ int main(int argc, char* pArgv[])
 		menuButtonB.marginRight = 4;
 		
 		// Content
-		CreateRGBox(&winBox, RGBOX_HORIZONTAL, 1, 0, 0, &content);
+		CreateRGBox(&winBox, RGBOX_HORIZONTAL, 1, 0, 0, &outerContent);
 		
-		CreateRGBox(&content, 0, 1, 0, 0, &fillerA); // Filler for centering
-		CreateRGBox(&content, RGBOX_VERTICAL, 0, 0, 0, &content2);
-		CreateRGBox(&content, 0, 1, 0, 0, &fillerB); // Filler for centering
+		CreateRGBox(&outerContent, 0, 1, 0, 0, &fillerA); // Filler for centering
+		CreateRGBox(&outerContent, RGBOX_VERTICAL, 0, 0, 0, &innerContent);
+		CreateRGBox(&outerContent, 0, 1, 0, 0, &fillerB); // Filler for centering
 		
 		// Main buttons
-		CreateRGBox(&content2, 0, 1, 0, 0, &fillerD); // Filler for centering
+		CreateRGBox(&innerContent, 0, 1, 0, 0, &fillerD); // Filler for centering
 		
-		CreateRGBox(&content2, 0, 0, 128, 24, &resolutionA);
-		CreateRGBox(&content2, 0, 0, 128, 28, &resolutionB);
+		CreateRGBox(&innerContent, 0, 0, 128, 24, &resolutionA);
+		CreateRGBox(&innerContent, 0, 0, 128, 28, &resolutionB);
 		resolutionB.marginTop = 4;
 		
-		CreateRGBox(&content2, 0, 0, 128, 28, &resolutionC);
+		CreateRGBox(&innerContent, 0, 0, 128, 28, &resolutionC);
 		resolutionC.marginTop = 4;
 		
-		CreateRGBox(&content2, 0, 0, 128, 36, &exit);
+		CreateRGBox(&innerContent, 0, 0, 128, 36, &exit);
 		exit.marginTop = 12;
 		
-		CreateRGBox(&content2, 0, 1, 0, 0, &fillerE); // Filler for centering
+		CreateRGBox(&innerContent, 0, 1, 0, 0, &fillerE); // Filler for centering
 		
 		// Calculate layout
 		LayoutRGBox(&winBox);
