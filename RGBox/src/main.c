@@ -1,3 +1,5 @@
+// Small example for RGBox layout
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -36,14 +38,14 @@ int main(int argc, char* pArgv[])
 		CreateRGBox(&winBox, RGBOX_VERTICAL, 0, 0, 0, &menu);
 		
 		CreateRGBox(&menu, 0, 0, 128, 28, &menuButtonA);
-		menuButtonA.margin[RGBOX_TOP] = 4;
-		menuButtonA.margin[RGBOX_LEFT] = 4;
-		menuButtonA.margin[RGBOX_RIGHT] = 4;
+		menuButtonA.marginTop = 4;
+		menuButtonA.marginLeft = 4;
+		menuButtonA.marginRight = 4;
 		
 		CreateRGBox(&menu, 0, 0, 128, 28, &menuButtonB);
-		menuButtonB.margin[RGBOX_TOP] = 4;
-		menuButtonB.margin[RGBOX_LEFT] = 4;
-		menuButtonB.margin[RGBOX_RIGHT] = 4;
+		menuButtonB.marginTop = 4;
+		menuButtonB.marginLeft = 4;
+		menuButtonB.marginRight = 4;
 		
 		// Content
 		CreateRGBox(&winBox, RGBOX_HORIZONTAL, 1, 0, 0, &content);
@@ -57,13 +59,13 @@ int main(int argc, char* pArgv[])
 		
 		CreateRGBox(&content2, 0, 0, 128, 24, &resolutionA);
 		CreateRGBox(&content2, 0, 0, 128, 28, &resolutionB);
-		resolutionB.margin[RGBOX_TOP] = 4;
+		resolutionB.marginTop = 4;
 		
 		CreateRGBox(&content2, 0, 0, 128, 28, &resolutionC);
-		resolutionC.margin[RGBOX_TOP] = 4;
+		resolutionC.marginTop = 4;
 		
 		CreateRGBox(&content2, 0, 0, 128, 36, &exit);
-		exit.margin[RGBOX_TOP] = 12;
+		exit.marginTop = 12;
 		
 		CreateRGBox(&content2, 0, 1, 0, 0, &fillerE); // Filler for centering
 		
