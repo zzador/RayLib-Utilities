@@ -33,14 +33,14 @@ int main(int argc, char* pArgv[])
 		CreateRootRGBox(RGBOX_HORIZONTAL, width, height, &winBox);
 		
 		// Side menu
-		CreateRGBox(&winBox, RGBOX_VERTICAL, 0, 128, 0, &menu);
+		CreateRGBox(&winBox, RGBOX_VERTICAL, 0, 0, 0, &menu);
 		
-		CreateRGBox(&menu, RGBOX_HORIZONTAL, 0, 0, 28, &menuButtonA);
+		CreateRGBox(&menu, 0, 0, 128, 28, &menuButtonA);
 		menuButtonA.margin[RGBOX_TOP] = 4;
 		menuButtonA.margin[RGBOX_LEFT] = 4;
 		menuButtonA.margin[RGBOX_RIGHT] = 4;
 		
-		CreateRGBox(&menu, RGBOX_HORIZONTAL, 0, 0, 28, &menuButtonB);
+		CreateRGBox(&menu, 0, 0, 128, 28, &menuButtonB);
 		menuButtonB.margin[RGBOX_TOP] = 4;
 		menuButtonB.margin[RGBOX_LEFT] = 4;
 		menuButtonB.margin[RGBOX_RIGHT] = 4;
@@ -48,24 +48,24 @@ int main(int argc, char* pArgv[])
 		// Content
 		CreateRGBox(&winBox, RGBOX_HORIZONTAL, 1, 0, 0, &content);
 		
-		CreateRGBox(&content, RGBOX_HORIZONTAL, 1, 0, 0, &fillerA); // Filler for centering
-		CreateRGBox(&content, RGBOX_VERTICAL, 0, 128, 0, &content2);
-		CreateRGBox(&content, RGBOX_HORIZONTAL, 1, 0, 0, &fillerB); // Filler for centering
+		CreateRGBox(&content, 0, 1, 0, 0, &fillerA); // Filler for centering
+		CreateRGBox(&content, RGBOX_VERTICAL, 0, 0, 0, &content2);
+		CreateRGBox(&content, 0, 1, 0, 0, &fillerB); // Filler for centering
 		
 		// Main buttons
-		CreateRGBox(&content2, RGBOX_VERTICAL, 1, 0, 0, &fillerD); // Filler for centering
+		CreateRGBox(&content2, 0, 1, 0, 0, &fillerD); // Filler for centering
 		
-		CreateRGBox(&content2, RGBOX_VERTICAL, 0, 0, 24, &resolutionA);
-		CreateRGBox(&content2, RGBOX_VERTICAL, 0, 0, 28, &resolutionB);
+		CreateRGBox(&content2, 0, 0, 128, 24, &resolutionA);
+		CreateRGBox(&content2, 0, 0, 128, 28, &resolutionB);
 		resolutionB.margin[RGBOX_TOP] = 4;
 		
-		CreateRGBox(&content2, RGBOX_VERTICAL, 0, 0, 28, &resolutionC);
+		CreateRGBox(&content2, 0, 0, 128, 28, &resolutionC);
 		resolutionC.margin[RGBOX_TOP] = 4;
 		
-		CreateRGBox(&content2, RGBOX_VERTICAL, 0, 0, 36, &exit);
+		CreateRGBox(&content2, 0, 0, 128, 36, &exit);
 		exit.margin[RGBOX_TOP] = 12;
 		
-		CreateRGBox(&content2, RGBOX_VERTICAL, 1, 0, 0, &fillerE); // Filler for centering
+		CreateRGBox(&content2, 0, 1, 0, 0, &fillerE); // Filler for centering
 		
 		// Calculate layout
 		LayoutRGBox(&winBox);

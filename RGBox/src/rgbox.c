@@ -14,9 +14,44 @@ void CreateRGBox(RGBox* pParent, const uint32_t type, const uint32_t weight, con
 	pParent->pLastChild = pBox;
 }
 
+static void GetMinSize(const RGBox* pBox, uint32_t* pMinWidth, uint32_t* pMinHeight)
+{
+	uint32_t w2, h2, w = 0, h = 0;
+	
+	if (pBox->type == RGBOX_HORIZONTAL)
+	{
+		RGBox* pChild = pBox->pLastChild;
+		while (pChild != NULL)
+		{
+			GetMinSize(pChild, &w2, &h2);
+			
+			w += w2;
+			h = h < h2 ? h2 : h;
+			
+			pChild = pChild->pPrev;
+		}
+	}
+	else
+	{
+		RGBox* pChild = pBox->pLastChild;
+		while (pChild != NULL)
+		{
+			GetMinSize(pChild, &w2, &h2);
+			
+			h += h2;
+			w = w < w2 ? w2 : w;
+			
+			pChild = pChild->pPrev;
+		}
+	}
+	
+	*pMinWidth = pBox->minWidth < w ? w : pBox->minWidth;
+	*pMinHeight = pBox->minHeight < h ? h : pBox->minHeight;
+}
+
 void LayoutRGBox(RGBox* pBox)
 {
-	uint32_t size, minSize, weightSum = 0;
+	uint32_t size, minW, minH, minSize, weightSum = 0;
 	float ds, startPos, childSize, pos0, pos, dynSpace;
 	
 	if (pBox->pParent == NULL)
@@ -39,8 +74,9 @@ void LayoutRGBox(RGBox* pBox)
 	
 	while (pChild != NULL)
 	{
+		GetMinSize(pChild, &minW, &minH);
 		childSize = ((float) pChild->weight * ds) * size;
-		minSize = pBox->type == RGBOX_HORIZONTAL ? pChild->minWidth : pChild->minHeight;
+		minSize = pBox->type == RGBOX_HORIZONTAL ? minW : minH;
 		
 		if (childSize < minSize)
 			dynSpace -= minSize - childSize;
@@ -58,11 +94,12 @@ void LayoutRGBox(RGBox* pBox)
 	
 	while (pChild != NULL)
 	{
+		GetMinSize(pChild, &minW, &minH);
 		childSize = ((float) pChild->weight * ds) * dynSpace;
 		
 		if (pBox->type == RGBOX_HORIZONTAL)
 		{
-			minSize = pChild->minWidth;
+			minSize = minW;
 			
 			if (childSize < minSize)
 				pChild->rectangle =
@@ -75,7 +112,7 @@ void LayoutRGBox(RGBox* pBox)
 		}
 		else
 		{
-			minSize = pChild->minHeight;
+			minSize = minH;
 			
 			if (childSize < minSize)
 				pChild->rectangle =
