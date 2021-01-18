@@ -19,7 +19,7 @@ struct RGBox
 	RGBox* pParent;
 	RGBox* pLastChild;
 	Rectangle rectangle;
-	uint32_t type, weight, minWidth, minHeight, marginTop, marginRight, marginBottom, marginLeft;
+	uint32_t type, weight, minWidth, minHeight, paddingTop, paddingRight, paddingBottom, paddingLeft;
 };
 
 extern void CreateRootRGBox(const uint32_t type, const uint32_t width, const uint32_t height, RGBox* pBox);

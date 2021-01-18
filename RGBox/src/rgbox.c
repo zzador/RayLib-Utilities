@@ -53,7 +53,7 @@ static void GetMinSize(const RGBox* pBox, uint32_t* pMinWidth, uint32_t* pMinHei
 void LayoutRGBox(RGBox* pBox)
 {
 	float ds, startPos, childSize, pos0, pos, dynSpace;
-	uint32_t size, minW, minH, minSize, marginX, marginY, weightSum = 0;
+	uint32_t size, minW, minH, minSize, paddingX, paddingY, weightSum = 0;
 	
 	if (pBox->pParent == NULL)
 		pBox->rectangle = (Rectangle){0, 0, pBox->minWidth, pBox->minHeight};
@@ -95,8 +95,8 @@ void LayoutRGBox(RGBox* pBox)
 	{
 		GetMinSize(pChild, &minW, &minH);
 		childSize = ((float) pChild->weight * ds) * dynSpace;
-		marginX = pChild->marginLeft + pChild->marginRight;
-		marginY = pChild->marginTop + pChild->marginBottom;
+		paddingX = pChild->paddingLeft + pChild->paddingRight;
+		paddingY = pChild->paddingTop + pChild->paddingBottom;
 		
 		if (pBox->type == RGBOX_HORIZONTAL)
 		{
@@ -104,12 +104,12 @@ void LayoutRGBox(RGBox* pBox)
 			
 			if (childSize < minSize)
 				pChild->rectangle =
-					(Rectangle){pos - minSize + pChild->marginLeft - startPos, pos0 + pChild->marginTop, minSize - marginX, pBox->rectangle.height - marginY};
+					(Rectangle){pos - minSize + pChild->paddingLeft - startPos, pos0 + pChild->paddingTop, minSize - paddingX, pBox->rectangle.height - paddingY};
 			else
 				pChild->rectangle =
-					(Rectangle){pos - childSize + pChild->marginLeft - startPos, pos0 + pChild->marginTop, childSize - marginX, pBox->rectangle.height - marginY};
+					(Rectangle){pos - childSize + pChild->paddingLeft - startPos, pos0 + pChild->paddingTop, childSize - paddingX, pBox->rectangle.height - paddingY};
 			
-			pos -= pChild->rectangle.width + marginX;
+			pos -= pChild->rectangle.width + paddingX;
 		}
 		else
 		{
@@ -117,12 +117,12 @@ void LayoutRGBox(RGBox* pBox)
 			
 			if (childSize < minSize)
 				pChild->rectangle =
-					(Rectangle){pos0 + pChild->marginLeft, pos - minSize + pChild->marginTop - startPos, pBox->rectangle.width - marginX, minSize - marginY};
+					(Rectangle){pos0 + pChild->paddingLeft, pos - minSize + pChild->paddingTop - startPos, pBox->rectangle.width - paddingX, minSize - paddingY};
 			else
 				pChild->rectangle =
-					(Rectangle){pos0 + pChild->marginLeft, pos - childSize + pChild->marginTop - startPos, pBox->rectangle.width - marginX, childSize - marginY};
+					(Rectangle){pos0 + pChild->paddingLeft, pos - childSize + pChild->paddingTop - startPos, pBox->rectangle.width - paddingX, childSize - paddingY};
 			
-			pos -= pChild->rectangle.height + marginY;
+			pos -= pChild->rectangle.height + paddingY;
 		}
 		
 		LayoutRGBox(pChild);
