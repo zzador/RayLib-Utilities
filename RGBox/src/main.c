@@ -16,13 +16,13 @@
 
 int main(int argc, char* pArgv[])
 {
-	int bExit = 0;
-	int width = 512;
-	int height = 512;
+	int bExit = 0,
+		width = 512,
+		height = 512;
 	
 	RGBox fillerA, fillerB, fillerD, fillerE,
-		winBox, menu, menuButtonA, menuButtonB, outerContent,
-		innerContent, resolutionA, resolutionB, resolutionC, exit;
+		  winBox, menu, menuButtonA, menuButtonB, outerContent,
+		  innerContent, resolutionA, resolutionB, resolutionC, exit;
 	
 	InitWindow(width, height, "Raylib");
 	
