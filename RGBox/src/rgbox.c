@@ -67,12 +67,12 @@ void LayoutRGBox(RGBox* pBox)
 	}
 	
 	// Get dynamic space
-	pChild = pBox->pLastChild;
 	ds = weightSum > 0 ? 1.0f / (float) weightSum : 0.0f;
 	size = pBox->type == RGBOX_HORIZONTAL ? pBox->rectangle.width : pBox->rectangle.height;
 	dynSpace = size;
 	startPos = size;
 	
+	pChild = pBox->pLastChild;
 	while (pChild != NULL)
 	{
 		GetMinSize(pChild, &minW, &minH);
@@ -86,11 +86,11 @@ void LayoutRGBox(RGBox* pBox)
 	}
 	
 	// Layout children
-	pChild = pBox->pLastChild;
 	startPos = weightSum == 0 ? startPos : 0.0f;
 	pos0 = pBox->type == RGBOX_HORIZONTAL ? pBox->rectangle.y : pBox->rectangle.x;
 	pos = pBox->type == RGBOX_HORIZONTAL ? pBox->rectangle.x + pBox->rectangle.width : pBox->rectangle.y + pBox->rectangle.height;
 	
+	pChild = pBox->pLastChild;
 	while (pChild != NULL)
 	{
 		GetMinSize(pChild, &minW, &minH);
