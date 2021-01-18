@@ -1,0 +1,3 @@
+src/rgbox.c src/main.c
+
+-O2
