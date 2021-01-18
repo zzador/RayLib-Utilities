@@ -38,14 +38,14 @@ int main(int argc, char* pArgv[])
 		CreateRGBox(&winBox, RGBOX_VERTICAL, 0, 0, 0, &menu);
 		
 		CreateRGBox(&menu, 0, 0, 128, 28, &menuButtonA);
-		menuButtonA.marginTop = 4;
-		menuButtonA.marginLeft = 4;
-		menuButtonA.marginRight = 4;
+		menuButtonA.paddingTop = 4;
+		menuButtonA.paddingLeft = 4;
+		menuButtonA.paddingRight = 4;
 		
 		CreateRGBox(&menu, 0, 0, 128, 28, &menuButtonB);
-		menuButtonB.marginTop = 4;
-		menuButtonB.marginLeft = 4;
-		menuButtonB.marginRight = 4;
+		menuButtonB.paddingTop = 4;
+		menuButtonB.paddingLeft = 4;
+		menuButtonB.paddingRight = 4;
 		
 		// Content
 		CreateRGBox(&winBox, RGBOX_HORIZONTAL, 1, 0, 0, &outerContent);
@@ -59,13 +59,13 @@ int main(int argc, char* pArgv[])
 		
 		CreateRGBox(&innerContent, 0, 0, 128, 24, &resolutionA);
 		CreateRGBox(&innerContent, 0, 0, 128, 28, &resolutionB);
-		resolutionB.marginTop = 4;
+		resolutionB.paddingTop = 4;
 		
 		CreateRGBox(&innerContent, 0, 0, 128, 28, &resolutionC);
-		resolutionC.marginTop = 4;
+		resolutionC.paddingTop = 4;
 		
 		CreateRGBox(&innerContent, 0, 0, 128, 36, &exit);
-		exit.marginTop = 12;
+		exit.paddingTop = 12;
 		
 		CreateRGBox(&innerContent, 0, 1, 0, 0, &fillerE); // Filler for centering
 		
